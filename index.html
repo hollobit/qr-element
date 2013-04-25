@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>
+      The QR element : An HTML extension for offline hyperlink
+    </title>
+ 
+    <script src="http://www.w3.org/Tools/respec/respec-w3c-common" class="remove">
+</script>
+    <script class='remove'>
+var respecConfig = {
+        specStatus:           "ED",
+        shortName:            "qr-element",
+        //publishDate:  "2012-12-12",
+        //previousPublishDate:  "",
+        edDraftURI:           "http://qr.html5ok.kr",
+        // lcEnd: "3000-01-01",
+        // crEnd: "3000-01-01",
+
+        editors: [
+                {
+                  name: "Jonathan Jeon (전종홍) ",
+                  company: "ETRI",
+                  companyURL: "http://www.etri.re.kr"
+                }
+        ],
+        inlineCSS:     true,
+        noIDLIn:       true,
+        noLegacyStyle: false,
+        extraCSS:      ["../ReSpec.js/css/respec.css"],
+        wg:           "HTML Working Group",
+        wgURI:        "http://www.w3.org/2012/sysapps/",
+        wgPublicList: "public-html",
+        wgPatentURI:  "http://www.w3.org/2004/01/pp-impl/58119/status"
+    };
+    </script>
+    <style class='remove'>
+a:not(href){ color: red }
+    </style>
+    <link href="http://www.w3.org/StyleSheets/TR/W3C-ED" rel="stylesheet">
+
+<!--[if lt IE 9]><script src='http://www.w3.org/2008/site/js/html5shiv.js'></script><![endif]-->
+<link class="qrcg" href="http://www.w3.org/StyleSheets/TR/w3c-unofficial.css" rel="stylesheet">
+  </head>
+  <body>
+  	
+
+    <section id='abstract'>
+      <p>
+      	The <code><a href="#dfn-qr">QR</a></code> element is an image container whose source content is automatic generated  from input text (e.g. text, URL, call, SMS, vCard… et.al). 
+      </p>
+    </section>
+    <section>
+      <h2>
+        Introduction
+      </h2>
+      <p>
+        <dfn>QR Code</dfn> (abbreviated from Quick Response Code) is the trademark for a type of matrix barcode 
+        (or <dfn>two-dimensional code</dfn>) first designed for the automotive industry. More recently, the system has 
+        become popular outside the industry due to its fast readability and large storage capacity compared to standard 
+        <dfn>UPC barcodes</dfn>. Generally, the code consists of black modules (square dots) arranged in a square pattern 
+        on a white background. The information encoded can be made up of four standardized kinds ("modes") of 
+        data or through supported extensions, virtually any kind of data
+      </p>
+      <section class="informative">
+        <h3>
+          Example QR element
+        </h3>
+       <p>
+       	This first sample shows how to use the QR element with attirbutes. 
+        </p>
+        <pre class="example highlight">
+ &lt;qr size="32" error="High" fgcolor="red" href=”http://foo.bar”>You can connect here&lt;/qr>
+</pre>
+      </section>
+    </section>
+    <section id="sotd">
+      <p>
+        Implementors should be aware that this specification is not stable.
+        <strong>Implementors who are not taking part in the discussions are
+        likely to find the specification changing out from under them in
+        incompatible ways.</strong> Vendors interested in implementing this
+        specification before it eventually reaches the Candidate Recommendation
+        stage should join the aforementioned mailing lists and take part in the
+        discussions.
+      </p>
+    </section>
+    <section>
+    	<h2>Terminology</h2>
+  		<p>The conformance requirements, conformance classes, definitions,
+  		dependencies, terminology, and typographical conventions described in
+  		the HTML5 specification apply to this specification. [[!HTML5]]</a></p>
+
+  		<p>Interfaces are defined in terms of Web IDL. [[!WEBIDL]]</a></p>
+      </p>
+      <p>The following terms are used throughout this specification so they are gathered here for the readers convenience. The following list of terms is not exhaustive; other terms are defined throughout this specification.</p>
+<p>The follow terms are defined by the [[!HTML5]] specification: <dfn id="dfn-img-element"><a href="http://dev.w3.org/html5/spec/single-page.html#the-img-element"><code>img</code> element</a></dfn>, <dfn id="dfn-source-element"><a href="http://dev.w3.org/html5/spec/single-page.html#fallback-content">fallback content</a></dfn>. </p>
+
+    </section>
+    <section id="conformance">
+      <p>
+        There is only one class of product that can claim conformance to this
+        specification: a <dfn>user agent</dfn>.
+      </p>  
+    <p> This specification has the same <a href="http://dev.w3.org/html5/spec/single-page.html#conformance-requirements">conformance requirements</a> and applies to the same <a href="http://dev.w3.org/html5/spec/single-page.html#conformance-classes">conformance classes</a> as [[[!HTML5]]. </p>
+        <p>
+        Implementations that use ECMAScript to expose the APIs defined in this specification <em class="rfc2119" title="must">must</em> implement them in a manner consistent with the ECMAScript Bindings defined in the [[!WEBIDL]] specification.</p>
+      </p>
+    </section>
+	  <section>
+	  	<h2><code><a href="#dfn-qr">picture</a></code> element</h2>
+	  	<dl>
+  <dt><a href="http://dev.w3.org/html5/spec/single-page.html#element-dfn-categories" title="element-dfn-categories">Categories</a>:</dt>
+  <dd><a href="http://dev.w3.org/html5/spec/single-page.html#flow-content-1">Flow content</a>.</dd>
+  <dd><a href="http://dev.w3.org/html5/spec/single-page.html#phrasing-content-1">Phrasing content</a>.</dd>
+  <dd><a href="http://dev.w3.org/html5/spec/single-page.html#embedded-content-2">Embedded content</a>.</dd>
+  <dt><a href="http://dev.w3.org/html5/spec/single-page.html#element-dfn-contexts" title="element-dfn-contexts">Contexts in which this element can be used</a>:</dt>
+  <dd>Where <a href="http://dev.w3.org/html5/spec/single-page.html#embedded-content-2">embedded content</a> is expected.</dd>
+  <dt><a href="http://dev.w3.org/html5/spec/single-page.html#element-dfn-content-model" title="element-dfn-content-model">Content model</a>:</dt>
+  <dd>Empty.</dd>
+  <dt><a href="http://dev.w3.org/html5/spec/single-page.html#element-dfn-attributes" title="element-dfn-attributes">Content attributes</a>:</dt>
+  <dd><a href="http://dev.w3.org/html5/spec/single-page.html#global-attributes">Global attributes</a></dd>
+  <dd><a href="http://www.w3.org/html/wg/drafts/html/master/single-page.html#attr-input-alt">alt</a></dd>
+  <dd><code>type</code></dd>
+  <dd><code>value</code></dd>
+  <dd><code>size</code></dd>
+  <dd><code>fgcolor</code></dd>
+  <dd><code>bgcolor</code></dd>
+  <dd><code>version</code></dd>
+  <dd><code>error</code></dd>
+  <dt><a href="http://dev.w3.org/html5/spec/single-page.html#element-dfn-dom" title="element-dfn-dom">DOM interface</a>:</dt>
+  <dd>
+    <pre>[NamedConstructor=QR]
+HTMLQRElement : HTMLElement{
+   attribute DOMString alt;
+   attribute DOMString type;
+   attribute DOMString value;
+   attribute unsigned long size;
+   attribute DOMString fgcolor;
+   attribute DOMString bgcolor;
+   attribute unsigned long version;
+   attribute DOMString error;
+}</pre>
+  </dd>
+</dl>
+
+<p> 
+	The  <code><a href="#the-qr-element">qr</a></code> element <a href="rendering.html#represents">represents</a> a generated image.
+</p>
+    <p>
+      The <code><dfn id="dfn-QR">QR</dfn></code> element used for
+      displaying an generated image that can come from a range of types (including the
+      <dfn id="attr-QR-type" title="attr-QR-type"><code>type</code></dfn> and <dfn id="attr-QR-value" title="attr-QR-value"><code>value</code></dfn> attributes). Which image
+      the user agent displays depends on the algorithm for encoding the value. The value of
+      the <dfn id="attr-QR-alt" title="attr-QR-alt"><code>alt</code></dfn> attribute provides equivalent
+      content for those who cannot process images or who have image loading disabled.
+    </p>
+    <p>
+      The requirements on the <code title="attr-QR-alt"><a href="#attr-QR-alt">alt</a></code> attribute's value are described
+      <a href="http://www.w3.org/TR/html5/embedded-content-0.html#alt">in the
+      <code>img</code> section</a>.
+    </p>
+
+    <p class="note">
+    	note: 
+    </p>
+ 	  
+ 	  <section>
+ 	  	<h3>Type attribute</h3>
+ 	  	<p>
+ 	  The<dfn id="attr-QR-type" title="attr-QR-type"><code>type</code></dfn> attribute controls the data type (and associated control) of the element. It is an <a href="infrastructure.html#enumerated-attribute">enumerated attribute</a>. The following table lists the keywords and states for the attribute — the keywords in the left column map to the states in the cell in the second column on the same row as the keyword. </p>
+
+  <table id="attr-qr-type-keywords"><thead><tr><th> Keyword
+     <th> State
+     <th> Data type
+     <th> Control type
+    <tr><td> <dfn id="attr-qr-type-text-keyword" title="attr-qr-type-text-keyword"><code>text</code></dfn>
+     <td> <a href="#text-(type=text)-state-and-search-state-(type=search)" title="attr-input-type-text">Text</a>
+     <td> Text with no line breaks
+     <td> A text field
+    <tr><td> <dfn id="attr-qr-type-url-keyword" title="attr-qr-type-url-keyword"><code>url</code></dfn>
+     <td> <a href="#url-state-(type=url)" title="attr-input-type-url">URL</a>
+     <td> An absolute URL
+     <td> A text field
+    <tr><td> <dfn id="attr-qr-type-contact-keyword" title="attr-qr-type-contact-keyword"><code>contact</code></dfn>
+     <td> <a href="#e-mail-state-(type=email)" title="attr-input-type-email">E-mail</a>
+     <td> An e-mail address or list of e-mail addresses
+     <td> A text field
+    <tr><td> <dfn id="attr-input-type-calendar-keyword" title="attr-input-type-datetime-keyword"><code>calendar</code></dfn>
+     <td> <a href="#calendar-state-(type=calendar)" title="attr-input-type-calendar">Calendar</a>
+     <td> An Calendar information includes event information (e.g. event name, location, description, start date, end date, end time… et.al) 
+     <td> A text field
+  </table>
+ </section>
+     
+      <section> 	     	 	  	
+ 	  <h3>States of the type attribute</h3>
+ 	  <section>
+ 	  	  <h4 id="#text-(type=text)-state"><dfn title="attr-qr-type-text">Text</dfn> (<code title="">type=text</code>) state</h4>
+
+		<p> The text attribute specifies the text data that encoded in QR code. 
+QR Code is capable of handling all types of data, such as numeric and alphabetic characters, 2 byte characters and symbols. Up to 7,089 characters can be encoded in one symbol. </p>
+
+  <p>When an <code><a href="#the-qr-element">QR</a></code> element's <code title="attr-input-type"><a href="#attr-qr-type">type</a></code> attribute is in the <a href="#text-(type=text)-state" title="attr-input-type-text">Text</a> state, the rules in this section apply.</p>
+
+	</section>
+	
+	<section>
+	<h4 id="url-state-(type=url)"><dfn title="attr-qr-type-url">URL</dfn> state (<code title="">type=url</code>)</h4>
+
+		<p>
+			The url attribute specifies the URLs (include URIs, URNs) that encoded in QR code. A URL is that provides the destination of the hyperlink. If the href attribute is not specified, the element represents a placeholder hyperlink. [[!RFC2397]],[[!RFC3966]],[[!RFC3986]],[[!RFC3987]]
+		</p>
+		<pre class="example">
+			mailto:hollobit@etri.re.kr
+			tel:+82-111-1111-1111 
+			sms:&lt;number>
+			mms:&lt;number>
+			geo:40.71872,-73.98905,100
+			market://details?id=org.example.foo
+			youtube://ID
+			WIFI:T:WPA;S:mynetwork;P:mypass;;
+			facetime:&lt;number>
+			skype:&lt;username|number>?query
+			irc://&lt;url>:query
+			aim:query?&lt;username>
+			ymsgr:query?&lt;email|number>
+			gtalk:query?&lt;email>
+		</pre>
+		
+		  <p>When an <code><a href="#the-input-element">input</a></code> element's <code title="attr-qr-type"><a href="#attr-qr-type">type</a></code> attribute is in the <a href="#url-state-(type=url)" title="attr-qr-type-url">URL</a> state, the rules in this
+  section apply.</p>
+
+  <p>The <code title="attr-qr-value"><a href="#attr-qr-value">value</a></code> attribute, if
+  specified and not empty, must have a value that is a <a href="infrastructure.html#valid-url-potentially-surrounded-by-spaces">valid URL
+  potentially surrounded by spaces</a> that is also an
+  <a href="infrastructure.html#absolute-url">absolute URL</a>.</p>
+ 
+   <p><strong>The <a href="#value-sanitization-algorithm">value sanitization algorithm</a> is as
+  follows</strong>: <a href="infrastructure.html#strip-line-breaks">Strip line breaks</a> from the <a href="#concept-fe-value" title="concept-fe-value">value</a>, then <a href="infrastructure.html#strip-leading-and-trailing-whitespace">strip leading and
+  trailing whitespace</a> from the <a href="#concept-fe-value" title="concept-fe-value">value</a>.</p>
+
+  <p><strong>Constraint validation</strong>: While the <a href="#concept-fe-value" title="concept-fe-value">value</a> of the element is neither the
+  empty string nor a <a href="infrastructure.html#valid-url" title="valid URL">valid</a>
+  <a href="infrastructure.html#absolute-url">absolute URL</a>, the element is <a href="#suffering-from-a-type-mismatch">suffering from a
+  type mismatch</a>.</p>
+ 	
+	</section>
+	
+	<section>
+		<h4 id="contact-(type=contact)"><dfn title="attr-QR-type-contact">Contact</dfn> state (<code title="">type=contact</code>)</h4>
+		<p> The contact attribute specifies the contact information that encoded in QR code. Contact information includes personal contact information (e.g. name, company, phone number… et.al). Contact information’s format is stored in a plain text file which is formatted according to the dedicated specification (e.g. vCard. MECARD, Bizcard specification). [[!RFC4770]], [[!RFC2426]]
+	</p>
+	<pre class="example">
+		BIZCARD:N:Jonathan;X:Jeon;T:Software Engineer;C:ETRI;A:76 9th Avenue, New York, NY 10011;B:+12125551212;E:someone@etri.re.kr;;
+	</pre>
+	
+	<pre class="example">
+			MECARD:N:Jonathan,Jeon;ADR:161, Kajong-Dong, YuSong-Gu, Daejeon, South Korea 305-350;TEL:+82-10-1111-1111;EMAIL:hollobit@etri.re.kr;;
+	</pre>
+	
+	 <p>When an <code><a href="#the-QR-element">QR</a></code> element's <code title="attr-QR-type"><a href="#attr-QR-type">type</a></code> attribute is in the <a href="#contact-state-(type=contact)" title="attr-QR-type-contact">Contact</a> state, the rules in this section apply.</p>
+	 
+	</section>
+
+	<section>
+		<h4 id="calendar-(type=calendar)"><dfn title="attr-QR-type-calendar">Calendar</dfn> state (<code title="">type=calendar</code>)</h4>
+
+	<p>The calendar attribute specifies the calendar event information that encoded in QR code. Calendar information includes event information (e.g. event name, location, description, start date, end date, end time… et.al). It can also specify the URL of event file (e.g. vCal, iCalendar). [[!RFC2445]]</p>    
+	</section>
+	
+	<pre class="example">
+		BEGIN:VCALENDAR
+		VERSION:2.0
+		PRODID:-//hacksw/handcal//NONSGML v1.0//EN
+		BEGIN:VEVENT
+		UID:uid1@example.com
+		DTSTAMP:20130714T170000Z
+		ORGANIZER;CN=Jonathan Jeon:MAILTO:hollobit@example.com
+		DTSTART:20130714T170000Z
+		DTEND:20130715T035959Z
+		SUMMARY:WG F2F meeting
+		END:VEVENT
+		END:VCALENDAR
+    </pre>	
+	
+   <pre class="example">
+    @@ TBW - vCal example 
+ 	</pre>
+
+	  <p>When an <code><a href="#the-qr-element">QR</a></code> element's <code title="attr-qr-type"><a href="#attr-QR-type">type</a></code> attribute is in the <a href="#calendar-state-(type=calendar)" title="attr-QR-type-calendar">Calendar</a> state, the rules in this section apply.</p>
+
+
+</section> 
+
+<section>
+	<h3>Additional Attributes </h3>
+ 	<section>
+ 	<h3>The size attribute</h3>
+	<p>The size attribute specifies the visible width of an <qr> element. </p>
+	 </section>
+ 
+ 	<section>
+ 	<h3>The fgcolor attribute</h3>
+	<p>The fgcolor attribute specifies the foreground color of an <qr> element. The value of fgcolor can use to numeric, hexadecimal, RGB values. Default value is black.</p>
+	</section>
+
+	<section>
+	<h3>The bgcolor attribute</h3>
+	<p>The bgcolor attribute specifies the background color of an <qr> element. The value of bgcolor can use to numeric, hexadecimal, RGB values. Default value is white.
+	</p>
+	</section>
+
+	<section>
+	<h3>The version attribute</h3>
+	<p>The version attribute specifies the symbol versions of QR Code range from Version 1 to Version 40. </p>
+
+	<p>Each version has a different module configuration or number of modules. (The module refers to the black and white dots that make up QR Code.) </P>
+
+	<p>
+	"Module configuration" refers to the number of modules contained in a symbol, commencing with Version 1 (21 × 21 modules) up to Version 40 (177 × 177 modules). Each higher version number comprises 4 additional modules per side.</p>
+	</section>
+
+	<section>
+	<h3>The error attribute</h3>
+	<p>The error attribute specifies the error correction capability to restore data if the code is dirty or damaged. Four error correction levels (Low, Medium, Quartile, High) are available for users to choose according to the operating environment. Raising this level improves error correction capability but also increases the amount of data QR Code size.</p>
+
+	<pre class="example">
+			Low : 7% of codewords can be restored.
+			Medium : 15% of codewords can be restored.
+			Quartile : 25% of codewords can be restored.
+			High : 30% of codewords can be restored.
+	</pre>
+ 	</section>
+</section>  
+</section>
+ 	  
+      <section class="appendix">
+      	 <h2>
+          Use Cases and Requirements
+        </h2>
+        <section>
+        	<h3>General Use Cases</h3>
+        	The purpose of QR Element  is to provide automatic generated QR code from input text (e.g. text, URL, call, SMS, vCard… et.al) in the web pages.
+			This could have many uses as bridge offline and online in multi-screen/multi-device environment. 
+
+			Here’s a list of features that QR element can be generally provided with:
+			<ul>
+			<li>Displaying text
+			<li>Setting up system alerts
+			<li>Adding events to calendars
+			<li>Opening URLs on the mobile devices
+			<li>Opening URIs and URNs on the mobile devices
+			<li>Collecting contact information (including vCards)
+			<li>Sending email
+			<li>Sending text messages (SMS)
+			<li>Get the geolocation
+			<li>Calling the phone number
+			<li>Connecting to WiFi
+			<li>Launching native Apple apps (Mail, Phone, FaceTime, Text, Map, YouTube and iTunes)
+			<li>Running JavaScript bookmarklets
+			<li>Opening certain IM clients (Skype, AIM, MSN, GTalk, ICQ and Yahoo)
+			<li>Opening special applications (IRC tools, feed readers, FTP clients and SVN repositories)
+			<li>Opening any application that registers a URI scheme when it installs on a platform
+			</ul>
+		 </section>
+		 <section> 
+		 	<h3>Offline Digital Signage </h3>		  	
+        <p>
+          Today QR codes are used in many digital signage applications. The QR code allows the advertiser to provide the audience with fast access to information, promotion and coupons, without the need to memorize any coupon codes, website or contact information. Even if signage system is not connected to network, QR element in HTML can provide to generate QR code with various web contents. 
+        </p>
+		 <p>Some of the reasons they are more useful than a standard barcode is that they can store much more data, including URL links, geo coordinates, VCard, SMS, etc. Another key feature of QR Codes is that many modern cell phones can scan them. 
+	  	 </p> 
+        </section>
+        <section>
+          <h3>Data Sharing between Devices</h3>		  	
+          <p> 
+          QR code based data sharing between mobile devices allow the sharing of contacts, web links, directions, and other small pieces of information by displaying/scanning two QR enabled devices front to back. If mobile browser can provide decode/encode functionality, user can make a QR code for data sharing between devices. </p>
+          <dl>
+  				<dt>Website</dt> 
+	  			<dd>QR codes can be used to direct people to a web location be that your catalogue, a particular e-resource, a library guide for them to download or an app you wish them to use.  This is probably the most straight forward use of QR codes.  The example shown takes you to the download location of ‘Commissioning for outcomes: A resource guide for commissioners of health and social care’</dd>	
+				<dt>Google maps location</dt>
+				<dd> a simple addition to promotional leaflets or websites to enable readers to find the library simply on Google Maps.</dd>
+      		</dl>
+        </section>      
+      </section>
+      <section class="appendix">   
+        <h2>
+          Acknowledgments
+        </h2>
+        <p>
+          TBW
+        </p>
+      </section>
+      <section class="appendix">
+     	<h2>
+      		Informative references
+      	</h2>
+      	<p>
+	<ul>
+	<li>QR Code Features <a href="http://www.qrcode.com/en/qrfeature.html">http://www.qrcode.com/en/qrfeature.html</a>
+	<li>QR Code Standardization <a href="http://www.qrcode.com/en/qrstandard.html">http://www.qrcode.com/en/qrstandard.html</a>
+	<li>QR Code, Wikipedia - <a href=" http://en.wikipedia.org/wiki/QR_code">http://en.wikipedia.org/wiki/QR_code</a>
+	<li>Proposed HTML elements and attributes - <a href="http://www.w3.org/html/wg/next/markup/">http://www.w3.org/html/wg/next/markup/</a>
+	<li>QR Contents - <a href="http://code.google.com/p/zxing/wiki/BarcodeContents">https://code.google.com/p/zxing/wiki/BarcodeContents</a>
+	<li>Overview of Existing URI Schemes - <a href="http://en.wikipedia.org/wiki/URI_scheme">http://en.wikipedia.org/wiki/URI_scheme</a>
+	<li>Overview of Existing URN Schemes - <a href="http://en.wikipedia.org/wiki/Uniform_resource_name">http://en.wikipedia.org/wiki/Uniform_resource_name</a>
+<li>Apple iPhone URI Scheme Reference - <a href="http://developer.apple.com/library/ios/#featuredarticles/iPhoneURLScheme_Reference/Introduction/Introduction.html">http://developer.apple.com/library/ios/#featuredarticles/iPhoneURLScheme_Reference/Introduction/Introduction.html</a>
+<li>Android Custom URI Scheme Code - <a href="http://stackoverflow.com/questions/3471503/how-to-listen-for-a-custom-uri">http://stackoverflow.com/questions/3471503/how-to-listen-for-a-custom-uri</a>
+	<li>Version and maximum data capacity table - <a href="http://www.qrcode.com/en/vertable1.html">http://www.qrcode.com/en/vertable1.html</a>
+	<li>QR Code Minimum Size - <a href="http://www.qrstuff.com/blog/2011/11/23/qr-code-minimum-size">http://www.qrstuff.com/blog/2011/11/23/qr-code-minimum-size</a>
+	<li><a href="http://mqr.kr/generate/geo.google/">MQR</a>
+	<li><a href="http://www.qrstuff.com/">QRStuff</a>
+	<li>vCal - <a href="http://en.wikipedia.org/wiki/VCal">http://en.wikipedia.org/wiki/VCal</a>
+</p>
+</section>
+    </section>
+    
+  </body>
+</html>
