@@ -71,8 +71,14 @@ a:not(href){ color: red }
        	This first sample shows how to use the QR element with attirbutes. 
         </p>
         <pre class="example highlight">
- &lt;qr size="32" error="High" fgcolor="red" href=”http://foo.bar”>You can connect here&lt;/qr>
-</pre>
+<b>Code Example:</b> 
+         
+Here is an example of the use of QR element in an HTML document:	
+            
+    &lt;qr size="100" href=”http://qr.html5ok.kr”>
+
+   <img src="./sample-qrcode.png">
+		 </pre>		 
       </section>
     </section>
     <section id="sotd">
@@ -121,7 +127,7 @@ a:not(href){ color: red }
   <dd>Empty.</dd>
   <dt><a href="http://dev.w3.org/html5/spec/single-page.html#element-dfn-attributes" title="element-dfn-attributes">Content attributes</a>:</dt>
   <dd><a href="http://dev.w3.org/html5/spec/single-page.html#global-attributes">Global attributes</a></dd>
-  <dd><a href="http://www.w3.org/html/wg/drafts/html/master/single-page.html#attr-input-alt">alt</a></dd>
+  <dd><a href="http://www.w3.org/html/wg/drafts/html/master/single-page.html#attr-QR-alt">alt</a></dd>
   <dd><code>type</code></dd>
   <dd><code>value</code></dd>
   <dd><code>size</code></dd>
@@ -171,24 +177,24 @@ HTMLQRElement : HTMLElement{
  	  	<p>
  	  The<dfn id="attr-QR-type" title="attr-QR-type"><code>type</code></dfn> attribute controls the data type (and associated control) of the element. It is an <a href="infrastructure.html#enumerated-attribute">enumerated attribute</a>. The following table lists the keywords and states for the attribute — the keywords in the left column map to the states in the cell in the second column on the same row as the keyword. </p>
 
-  <table id="attr-qr-type-keywords"><thead><tr><th> Keyword
+  <table id="attr-QR-type-keywords"><thead><tr><th> Keyword
      <th> State
      <th> Data type
      <th> Control type
-    <tr><td> <dfn id="attr-qr-type-text-keyword" title="attr-qr-type-text-keyword"><code>text</code></dfn>
-     <td> <a href="#text-(type=text)-state-and-search-state-(type=search)" title="attr-input-type-text">Text</a>
+    <tr><td> <dfn id="attr-QR-type-text-keyword" title="attr-QR-type-text-keyword"><code>text</code></dfn>
+     <td> <a href="#text-(type=text)-state-and-search-state-(type=search)" title="attr-QR-type-text">Text</a>
      <td> Text with no line breaks
      <td> A text field
-    <tr><td> <dfn id="attr-qr-type-url-keyword" title="attr-qr-type-url-keyword"><code>url</code></dfn>
-     <td> <a href="#url-state-(type=url)" title="attr-input-type-url">URL</a>
+    <tr><td> <dfn id="attr-QR-type-url-keyword" title="attr-QR-type-url-keyword"><code>url</code></dfn>
+     <td> <a href="#url-state-(type=url)" title="attr-QR-type-url">URL</a>
      <td> An absolute URL
      <td> A text field
-    <tr><td> <dfn id="attr-qr-type-contact-keyword" title="attr-qr-type-contact-keyword"><code>contact</code></dfn>
-     <td> <a href="#e-mail-state-(type=email)" title="attr-input-type-email">E-mail</a>
+    <tr><td> <dfn id="attr-QR-type-contact-keyword" title="attr-QR-type-contact-keyword"><code>contact</code></dfn>
+     <td> <a href="#e-mail-state-(type=email)" title="attr-QR-type-email">E-mail</a>
      <td> An e-mail address or list of e-mail addresses
      <td> A text field
-    <tr><td> <dfn id="attr-input-type-calendar-keyword" title="attr-input-type-datetime-keyword"><code>calendar</code></dfn>
-     <td> <a href="#calendar-state-(type=calendar)" title="attr-input-type-calendar">Calendar</a>
+    <tr><td> <dfn id="attr-QR-type-calendar-keyword" title="attr-QR-type-calendar-keyword"><code>calendar</code></dfn>
+     <td> <a href="#calendar-state-(type=calendar)" title="attr-QR-type-calendar">Calendar</a>
      <td> An Calendar information includes event information (e.g. event name, location, description, start date, end date, end time… et.al) 
      <td> A text field
   </table>
@@ -197,20 +203,20 @@ HTMLQRElement : HTMLElement{
       <section> 	     	 	  	
  	  <h3>States of the type attribute</h3>
  	  <section>
- 	  	  <h4 id="#text-(type=text)-state"><dfn title="attr-qr-type-text">Text</dfn> (<code title="">type=text</code>) state</h4>
+ 	  	  <h4 id="#text-(type=text)-state"><dfn title="attr-QR-type-text">Text</dfn> (<code title="">type=text</code>) state</h4>
 
 		<p> The text attribute specifies the text data that encoded in QR code. 
 QR Code is capable of handling all types of data, such as numeric and alphabetic characters, 2 byte characters and symbols. Up to 7,089 characters can be encoded in one symbol. </p>
 
-  <p>When an <code><a href="#the-qr-element">QR</a></code> element's <code title="attr-input-type"><a href="#attr-qr-type">type</a></code> attribute is in the <a href="#text-(type=text)-state" title="attr-input-type-text">Text</a> state, the rules in this section apply.</p>
+  <p>When an <code><a href="#the-qr-element">QR</a></code> element's <code title="attr-QR-type"><a href="#attr-QR-type">type</a></code> attribute is in the <a href="#text-(type=text)-state" title="attr-QR-type-text">Text</a> state, the rules in this section apply.</p>
 
 	</section>
 	
 	<section>
-	<h4 id="url-state-(type=url)"><dfn title="attr-qr-type-url">URL</dfn> state (<code title="">type=url</code>)</h4>
+	<h4 id="url-state-(type=url)"><dfn title="attr-QR-type-url">URL</dfn> state (<code title="">type=url</code>)</h4>
 
 		<p>
-			The url attribute specifies the URLs (include URIs, URNs) that encoded in QR code. A URL is that provides the destination of the hyperlink. If the href attribute is not specified, the element represents a placeholder hyperlink. [[!RFC2397]],[[!RFC3966]],[[!RFC3986]],[[!RFC3987]]
+			The url attribute specifies the URLs (include URIs, URNs) that encoded in QR code. A URL is that provides the destination of the hyperlink. If the href attribute is not specified, the element represents a placeholder hyperlink. [[!RFC2397]],[!RFC3406]],[[!RFC3966]],[[!RFC3986]],[[!RFC3987]]
 		</p>
 		<pre class="example">
 			mailto:hollobit@etri.re.kr
@@ -229,10 +235,10 @@ QR Code is capable of handling all types of data, such as numeric and alphabetic
 			gtalk:query?&lt;email>
 		</pre>
 		
-		  <p>When an <code><a href="#the-input-element">input</a></code> element's <code title="attr-qr-type"><a href="#attr-qr-type">type</a></code> attribute is in the <a href="#url-state-(type=url)" title="attr-qr-type-url">URL</a> state, the rules in this
+		  <p>When an <code><a href="#the-QR-element">QR</a></code> element's <code title="attr-QR-type"><a href="#attr-QR-type">type</a></code> attribute is in the <a href="#url-state-(type=url)" title="attr-QR-type-url">URL</a> state, the rules in this
   section apply.</p>
 
-  <p>The <code title="attr-qr-value"><a href="#attr-qr-value">value</a></code> attribute, if
+  <p>The <code title="attr-QR-value"><a href="#attr-QR-value">value</a></code> attribute, if
   specified and not empty, must have a value that is a <a href="infrastructure.html#valid-url-potentially-surrounded-by-spaces">valid URL
   potentially surrounded by spaces</a> that is also an
   <a href="infrastructure.html#absolute-url">absolute URL</a>.</p>
@@ -289,13 +295,16 @@ QR Code is capable of handling all types of data, such as numeric and alphabetic
     @@ TBW - vCal example 
  	</pre>
 
-	  <p>When an <code><a href="#the-qr-element">QR</a></code> element's <code title="attr-qr-type"><a href="#attr-QR-type">type</a></code> attribute is in the <a href="#calendar-state-(type=calendar)" title="attr-QR-type-calendar">Calendar</a> state, the rules in this section apply.</p>
+	  <p>When an <code><a href="#the-qr-element">QR</a></code> element's <code title="attr-QR-type"><a href="#attr-QR-type">type</a></code> attribute is in the <a href="#calendar-state-(type=calendar)" title="attr-QR-type-calendar">Calendar</a> state, the rules in this section apply.</p>
 
 
 </section> 
 
 <section>
-	<h3>Additional Attributes </h3>
+ 	<h3>The value attribute</h3>
+	<p>The value attribute specifies the data string that encoded in QR code. </p>
+	 </section>
+
  	<section>
  	<h3>The size attribute</h3>
 	<p>The size attribute specifies the visible width of an <qr> element. </p>
@@ -333,7 +342,6 @@ QR Code is capable of handling all types of data, such as numeric and alphabetic
 			High : 30% of codewords can be restored.
 	</pre>
  	</section>
-</section>  
 </section>
  	  
       <section class="appendix">
@@ -382,7 +390,9 @@ QR Code is capable of handling all types of data, such as numeric and alphabetic
 	  			<dd>Have you ever watched a cooking show or cooking segment on your local station and wished you would have written the ingredients down? Or maybe you did write them down but they didn’t tell you how much or for how long to cook it at what temperature? The TV show program makes it easy for viewers to get the recipes on their mobile device. QR codes can be used to direct people to a web location be that your recipes, a particular manual, a library guide for them to download or an app you wish them to use. <br />
 	  			<img src="http://www.themobilists.com/wp-content/uploads/2011/09/cooking-qr.jpg" width=300></dd>	
 				<dt>Google maps location</dt>
-				<dd> a simple addition to promotional leaflets or websites to enable readers to find the library simply on Google Maps.</dd>
+				<dd> a simple addition to promotional leaflets or websites to enable readers to find the library simply on Google Maps.
+			<img src="http://2d-code.co.uk/images/qr-code-google-maps.jpg" width=300></dd>
+				</dd>
       		</dl>
         </section>      
       </section>
@@ -406,7 +416,6 @@ QR Code is capable of handling all types of data, such as numeric and alphabetic
 	<li>Proposed HTML elements and attributes - <a href="http://www.w3.org/html/wg/next/markup/">http://www.w3.org/html/wg/next/markup/</a>
 	<li>QR Contents - <a href="http://code.google.com/p/zxing/wiki/BarcodeContents">https://code.google.com/p/zxing/wiki/BarcodeContents</a>
 	<li>Overview of Existing URI Schemes - <a href="http://en.wikipedia.org/wiki/URI_scheme">http://en.wikipedia.org/wiki/URI_scheme</a>
-	<li>Overview of Existing URN Schemes - <a href="http://en.wikipedia.org/wiki/Uniform_resource_name">http://en.wikipedia.org/wiki/Uniform_resource_name</a>
 <li>Apple iPhone URI Scheme Reference - <a href="http://developer.apple.com/library/ios/#featuredarticles/iPhoneURLScheme_Reference/Introduction/Introduction.html">http://developer.apple.com/library/ios/#featuredarticles/iPhoneURLScheme_Reference/Introduction/Introduction.html</a>
 <li>Android Custom URI Scheme Code - <a href="http://stackoverflow.com/questions/3471503/how-to-listen-for-a-custom-uri">http://stackoverflow.com/questions/3471503/how-to-listen-for-a-custom-uri</a>
 	<li>Version and maximum data capacity table - <a href="http://www.qrcode.com/en/vertable1.html">http://www.qrcode.com/en/vertable1.html</a>
